@@ -1,0 +1,17 @@
+const config = require("./config");
+const { REQUEST_TOKEN_URL } = config;
+
+exports.handler = async function (event) {
+  try {
+    const reqToken = await fetch(REQUEST_TOKEN_URL).then((r) => r.json());
+    return {
+      statusCode: 200,
+      body: reqToken.request_token,
+    };
+  } catch (err) {
+    return {
+      statusCode: 404,
+      body: err.toString(),
+    };
+  }
+};
