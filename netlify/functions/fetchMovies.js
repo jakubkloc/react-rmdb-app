@@ -1,4 +1,4 @@
-// const fetch = require("node-fetch");
+const fetch = require("node-fetch");
 const config = require("./config");
 const { SEARCH_BASE_URL, POPULAR_BASE_URL } = config;
 
