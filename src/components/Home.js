@@ -44,7 +44,7 @@ const Home = () => {
         header={
           searchTerm
             ? language === "pl"
-              ? "Wyniki Wyszukiwania"
+            ? "Wyniki Wyszukiwania"
               : "Search Results"
             : language === "pl"
             ? "Popularne Filmy"
