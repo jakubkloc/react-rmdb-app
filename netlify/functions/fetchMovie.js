@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { API_KEY,API_URL } from "./config"; 
 
-const fetchMovie  = async function (event, context) {
+exports.handler =   async function (event, context) {
   try {
     const { language } = event.queryStringParameters;
     const { movieId } = event.queryStringParameters;
@@ -22,4 +22,3 @@ const fetchMovie  = async function (event, context) {
   }
 };
 
-export default fetchMovie

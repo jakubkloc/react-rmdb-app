@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { LOGIN_URL, defaultConfig, SESSION_ID_URL } from "./config";
-const authenticate = async function (event, context) {
+exports.handler = async function (event, context) {
   try {
     const { requestToken } = event.queryStringParameters;
     const { username } = event.queryStringParameters;
@@ -36,5 +36,3 @@ const authenticate = async function (event, context) {
     };
   }
 };
-
-export default authenticate;

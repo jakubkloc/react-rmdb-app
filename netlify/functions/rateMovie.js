@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { API_KEY, API_URL, defaultConfig } from "./config";
 
-const rateMovie = async function (event) {
+exports.handler = async function (event) {
   try {
     const { sessionId } = event.queryStringParameters;
     const { movieId } = event.queryStringParameters;
@@ -27,5 +27,3 @@ const rateMovie = async function (event) {
     };
   }
 };
-
-export default rateMovie;

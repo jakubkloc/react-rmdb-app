@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { API_KEY, API_URL } from "./config";
 
-const fetchCredits = async function (event) {
+exports.handler = async function (event) {
   try {
     const { movieId } = event.queryStringParameters;
     const endpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
@@ -18,5 +18,3 @@ const fetchCredits = async function (event) {
     };
   }
 };
-
-export default fetchCredits;
