@@ -1,7 +1,7 @@
-const config = require("./config");
-const { API_KEY, API_URL, defaultConfig } = config;
+import fetch from "node-fetch";
+import { API_KEY, API_URL, defaultConfig } from "./config";
 
-exports.handler = async function (event) {
+const rateMovie = async function (event) {
   try {
     const { sessionId } = event.queryStringParameters;
     const { movieId } = event.queryStringParameters;
@@ -27,3 +27,5 @@ exports.handler = async function (event) {
     };
   }
 };
+
+export default rateMovie;

@@ -1,7 +1,7 @@
-const config = require("./config");
-const { REQUEST_TOKEN_URL } = config;
+import fetch from "node-fetch";
+import { REQUEST_TOKEN_URL } from "./config";
 
-exports.handler = async function (event) {
+const getRequestToken = async function (event) {
   try {
     const reqToken = await fetch(REQUEST_TOKEN_URL).then((r) => r.json());
     return {
@@ -15,3 +15,5 @@ exports.handler = async function (event) {
     };
   }
 };
+
+export default getRequestToken;

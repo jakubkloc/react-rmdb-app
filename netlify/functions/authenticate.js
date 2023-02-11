@@ -1,7 +1,6 @@
-const config = require("./config");
-const  { LOGIN_URL, defaultConfig, SESSION_ID_URL } = config;
-
-exports.handler = async function (event, context) {
+import fetch from "node-fetch";
+import { LOGIN_URL, defaultConfig, SESSION_ID_URL } from "./config";
+const authenticate = async function (event, context) {
   try {
     const { requestToken } = event.queryStringParameters;
     const { username } = event.queryStringParameters;
@@ -37,3 +36,5 @@ exports.handler = async function (event, context) {
     };
   }
 };
+
+export default authenticate;
