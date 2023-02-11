@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import { SEARCH_BASE_URL, POPULAR_BASE_URL } from "./config";
 
-const fetchMovies = async function (event, context) {
+exports.handler = async function (event, context) {
   try {
     const { language } = event.queryStringParameters;
     const { searchTerm } = event.queryStringParameters;
@@ -30,5 +30,3 @@ const fetchMovies = async function (event, context) {
     };
   }
 };
-
-export default fetchMovies;
