@@ -91,7 +91,7 @@ function MovieInfo({ movie }) {
                       <div className="score">{movie.vote_average}</div>
                     </div>
 
-                    { user ? (
+                    { (yourRate && user) ? (
                       <div className="rate-container">
                         {language === 'pl' ? <h3>TWOJA  OCENA</h3> : <h3>YOUR RATE</h3>}
                         <div className="score">
@@ -157,9 +157,9 @@ function MovieInfo({ movie }) {
                       <div className="score">{movie.vote_average}</div>
                     </div>
 
-                    { yourRate ? (
+                    { (yourRate && user) ? (
                       <div className="rate-container">
-                        {language === 'pl' ? <h3>TWOJA  OCENA</h3> : <h3>YOUR RATE</h3>}
+                        {language === 'pl' ? <h3>TWOJA OCENA</h3> : <h3>YOUR RATE</h3>}
                         <div className="score">
                           { loading
                             ? <div className="spinner" /> : yourRate}
