@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   max-width: var(--maxWidth);
@@ -19,4 +19,3 @@ export const Content = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 2rem;
   `;
-

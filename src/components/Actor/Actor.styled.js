@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   color: var(--white);
@@ -16,7 +16,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-
 export const Image = styled.img`
   display: block;
   width: 100%;
@@ -24,4 +23,3 @@ export const Image = styled.img`
   object-fit: cover;
   border-radius: 15px;
 `;
-

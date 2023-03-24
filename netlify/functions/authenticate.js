@@ -1,5 +1,6 @@
-import fetch from "node-fetch";
-import { LOGIN_URL, defaultConfig, SESSION_ID_URL } from "./config";
+import fetch from 'node-fetch';
+import { LOGIN_URL, defaultConfig, SESSION_ID_URL } from './config';
+
 exports.handler = async function (event, context) {
   try {
     const { requestToken } = event.queryStringParameters;

@@ -1,12 +1,12 @@
-import fetch from "node-fetch";
-import { API_KEY,API_URL } from "./config"; 
+import fetch from 'node-fetch';
+import { API_KEY, API_URL } from './config';
 
-exports.handler =   async function (event, context) {
+exports.handler = async function (event, context) {
   try {
     const { language } = event.queryStringParameters;
     const { movieId } = event.queryStringParameters;
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}${
-      language === "pl" ? "&language=pl-PL" : "&language=en-US"
+      language === 'pl' ? '&language=pl-PL' : '&language=en-US'
     }`;
     const movie = await (await fetch(endpoint)).text();
     return {
@@ -21,4 +21,3 @@ exports.handler =   async function (event, context) {
     };
   }
 };
-

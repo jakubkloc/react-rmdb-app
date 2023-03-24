@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 // Config
-import { IMAGE_BASE_URL, POSTER_SIZE } from "../config";
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 // Components
-import BreadCrumb from "./BreadCrumb";
-import Grid from "./Grid";
-import Spinner from "./Spinner";
-import MovieInfo from "./MovieInfo";
-import MovieInfoBar from "./MovieInfoBar";
-import Actor from "./Actor";
+import BreadCrumb from './BreadCrumb';
+import Grid from './Grid';
+import Spinner from './Spinner';
+import MovieInfo from './MovieInfo';
+import MovieInfoBar from './MovieInfoBar';
+import Actor from './Actor';
 // Hook
-import { useMovieFetch } from "../hooks/useMovieFetch";
+import useMovieFetch from '../hooks/useMovieFetch';
 // Image
-import NoImage from "../images/no_image.jpg";
+import NoImage from '../images/no_image.jpg';
 // Context
-import { Context } from "../context";
+import { Context } from '../context';
 
-const Movie = () => {
+function Movie() {
   const { languageData } = useContext(Context);
   const { language } = languageData;
 
@@ -25,12 +25,13 @@ const Movie = () => {
   const { state: movie, loading, error } = useMovieFetch(movieId);
 
   if (loading) return <Spinner />;
-  if (error)
-    return language === "pl" ? (
+  if (error) {
+    return language === 'pl' ? (
       <div>Coś poszło nie tak ...</div>
     ) : (
       <div>Something went wrong ...</div>
     );
+  }
 
   return (
     <>
@@ -41,7 +42,7 @@ const Movie = () => {
         budget={movie.budget}
         revenue={movie.revenue}
       />
-      <Grid header={language === "pl" ? "Aktorzy" : "Actors"}>
+      <Grid header={language === 'pl' ? 'Aktorzy' : 'Actors'}>
         {movie.actors.map((actor) => (
           <Actor
             key={actor.credit_id}
@@ -57,5 +58,5 @@ const Movie = () => {
       </Grid>
     </>
   );
-};
+}
 export default Movie;

@@ -7,7 +7,7 @@ Use API from [The Movie Database](https://www.themoviedb.org/)
 **If you fork this app from my Github you must:**
 1. create `.env` file and provide api key (from The Movie Database) in a variable named: `REACT_APP_API_KEY` (or or provide it when deploying this app on [Netflify](https://www.netlify.com/),
 
-2. deploying this app on [Netflify](https://www.netlify.com/).  
+2. deploying this app on [Netflify](https://www.netlify.com/) or using the netlify CLI run command `netlify dev`.  
  
 
 In addition to the functionalities presented in the course, I expanded the application with:
@@ -20,11 +20,21 @@ In addition to the functionalities presented in the course, I expanded the appli
 
 - changed font from abel to roboto to support polish language,
 
-- added information that the movie has been rated and increased the accuracy of the rating (increments of 0.5 to be more compatible with the API),
+- added information if user rate movie before and display it 
+
+- increased the accuracy of the rating (increments of 0.5 to be more compatible with the API),
+
+- add update rate functionality and spinner
 
 - I secured the API key with [serverless Netflify functions](https://www.netlify.com/products/functions/),
 
-- minor responsiveness fix.
+- responsiveness fix 
+  
+  - changing subtitles into icons  in headears when screen size is below 460px 
+  
+  - hiding username information when screen size is below 460px
+  
+  - changing movie rating and director infromations layout
 
 ***
 

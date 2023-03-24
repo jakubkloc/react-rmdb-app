@@ -1,5 +1,5 @@
-import fetch from "node-fetch";
-import { API_KEY, API_URL, defaultConfig } from "./config";
+import fetch from 'node-fetch';
+import { API_KEY, API_URL, defaultConfig } from './config';
 
 exports.handler = async function (event) {
   try {

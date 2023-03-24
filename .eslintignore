@@ -1,0 +1,9 @@
+node_module/
+netlify/
+.netlify/
+public/
+App.test.js
+netlify.toml
+README.md
+package.json
+package-lock.json

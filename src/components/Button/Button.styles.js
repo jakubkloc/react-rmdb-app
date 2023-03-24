@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Wrapper = styled.button`
+const Wrapper = styled.button`
   display: block;
   background: var(--darkGrey);
   width: 25%;
@@ -19,3 +19,5 @@ export const Wrapper = styled.button`
     opacity: 0.8;
   }
   `;
+
+export default Wrapper;

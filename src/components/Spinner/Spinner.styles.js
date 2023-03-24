@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-
-export const Spinner = styled.div`
+const Spinner = styled.div`
   border: 5px solid var(--lightGrey);
   border-top: 5px solid var(--medGrey);
   border-radius: 50%;
@@ -19,3 +18,5 @@ export const Spinner = styled.div`
     }
   }
 `;
+
+export default Spinner;

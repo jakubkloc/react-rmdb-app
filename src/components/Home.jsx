@@ -1,35 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 // Config
-import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
+import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 // Components
-import HeroImage from "./HeroImage";
-import Grid from "./Grid";
-import Thumb from "./Thumb";
-import Spinner from "./Spinner";
-import SearchBar from "./SearchBar";
-import Button from "./Button";
+import HeroImage from './HeroImage';
+import Grid from './Grid';
+import Thumb from './Thumb';
+import Spinner from './Spinner';
+import SearchBar from './SearchBar';
+import Button from './Button';
 // Hook
-import { useHomeFetch } from "../hooks/useHomeFetch";
+import useHomeFetch from '../hooks/useHomeFetch';
 // Image
-import NoImage from "../images/no_image.jpg";
+import NoImage from '../images/no_image.jpg';
 // Context
-import { Context } from "../context";
+import { Context } from '../context';
 
-const Home = () => {
+function Home() {
   const { languageData } = useContext(Context);
   const { language } = languageData;
-
-  const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
-    useHomeFetch();
-
+  const {
+    state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore,
+  } = useHomeFetch();
   if (error) {
-    console.log(error);
-    return language === "pl" ? (
+    return language === 'pl' ? (
       <div>Coś poszło nie tak ...</div>
     ) : (
       <div>Something went wrong ...</div>
     );
   }
+
+  let gridHeader = '';
+
+  if (searchTerm) {
+    gridHeader = language === 'pl' ? 'Wyniki Wyszukiwania' : 'Search Results';
+  } else {
+    gridHeader = language === 'pl' ? 'Popularne Filmy' : 'Popular Movies';
+  }
+
   return (
     <>
       {!searchTerm && state.results[0] ? (
@@ -42,16 +49,10 @@ const Home = () => {
       <SearchBar setSearchTerm={setSearchTerm} />
       <Grid
         header={
-          searchTerm
-            ? language === "pl"
-            ? "Wyniki Wyszukiwania"
-              : "Search Results"
-            : language === "pl"
-            ? "Popularne Filmy"
-            : "Popular Movies"
+         gridHeader
         }
       >
-        {state.results.map((movie, index) => (
+        {state.results.map((movie) => (
           <Thumb
             key={movie.id}
             clickable
@@ -67,12 +68,12 @@ const Home = () => {
       {loading && <Spinner />}
       {state.page < state.total_pages && !loading && (
         <Button
-          text={language === "pl" ? "Załaduj Więcej" : "Load More"}
+          text={language === 'pl' ? 'Załaduj Więcej' : 'Load More'}
           callback={() => setIsLoadingMore(true)}
         />
       )}
     </>
   );
-};
+}
 
 export default Home;

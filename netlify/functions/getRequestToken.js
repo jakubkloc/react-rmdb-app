@@ -1,5 +1,5 @@
-import fetch from "node-fetch";
-import { REQUEST_TOKEN_URL } from "./config";
+import fetch from 'node-fetch';
+import { REQUEST_TOKEN_URL } from './config';
 
 exports.handler = async function (event) {
   try {
