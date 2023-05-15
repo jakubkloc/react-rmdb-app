@@ -1,4 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
+// Translations
+import { useTranslation } from 'react-i18next';
 // Config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 // Components
@@ -12,29 +14,22 @@ import Button from './Button';
 import useHomeFetch from '../hooks/useHomeFetch';
 // Image
 import NoImage from '../images/no_image.jpg';
-// Context
-import { Context } from '../context';
 
 function Home() {
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
+  const { t } = useTranslation();
   const {
     state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore,
   } = useHomeFetch();
   if (error) {
-    return language === 'pl' ? (
-      <div>Coś poszło nie tak ...</div>
-    ) : (
-      <div>Something went wrong ...</div>
-    );
+    return <div>{t('home.somethingWentWrong')}</div>;
   }
 
   let gridHeader = '';
 
   if (searchTerm) {
-    gridHeader = language === 'pl' ? 'Wyniki Wyszukiwania' : 'Search Results';
+    gridHeader = t('home.searchResults');
   } else {
-    gridHeader = language === 'pl' ? 'Popularne Filmy' : 'Popular Movies';
+    gridHeader = t('home.popularMovies');
   }
 
   return (
@@ -68,7 +63,7 @@ function Home() {
       {loading && <Spinner />}
       {state.page < state.total_pages && !loading && (
         <Button
-          text={language === 'pl' ? 'Załaduj Więcej' : 'Load More'}
+          text={t('home.loadMore')}
           callback={() => setIsLoadingMore(true)}
         />
       )}

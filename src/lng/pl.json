@@ -1,0 +1,44 @@
+{
+  "header": {
+    "loggedInAs": "Zalogowano jako: ",
+    "logIn": "Zaloguj",
+    "logOut": "Wyloguj"
+  },
+
+  "searchBar": {
+    "searchMovie": "Szukaj Filmu"
+  },
+
+  "home": {
+    "somethingWentWrong": "Coś poszło nie tak ...",
+    "searchResults": "Wyniki wyszukiwania",
+    "popularMovies": "Popularne filmy",
+    "loadMore": "Załaduj więcej"
+  },
+
+  "login": {
+    "username": "Nazwa użytkownika",
+    "password": "Hasło",
+    "login": "Zaloguj"
+  },
+
+  "movie": {
+    "somethingWentWrong": "Coś poszło nie tak ...",
+    "actors": "Aktorzy"
+  },
+
+  "movieInfo": {
+    "noDescription": "Brak opisu w języku polskim",
+    "plot": "FABUŁA",
+    "rating": "OCENA",
+    "yourRate": "TWOJA OCENA",
+    "rate": "Oceń",
+    "director": "REŻYSER"
+  },
+
+  "movieInfoBar" : {
+    "runningTime" : "Czas Trwania",
+    "budget" : "Budżet",
+    "revenue" : "Przychód"
+  }
+}

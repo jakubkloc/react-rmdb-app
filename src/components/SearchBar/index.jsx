@@ -1,17 +1,16 @@
 import React, {
-  useState, useEffect, useRef, useContext,
+  useState, useEffect, useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 // Image
+import { useTranslation } from 'react-i18next';
 import searchIcon from '../../images/search-icon.svg';
 // Styles
 import { Wrapper, Content } from './SearchBar.styles';
-// Context
-import { Context } from '../../context';
+// Translation
 
 function SearchBar({ setSearchTerm }) {
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
+  const { t } = useTranslation();
 
   const [state, setState] = useState('');
   const initial = useRef(true);
@@ -33,7 +32,7 @@ function SearchBar({ setSearchTerm }) {
         <img src={searchIcon} alt="search-icon" />
         <input
           type="text"
-          placeholder={language === 'pl' ? 'Szukaj Filmu' : 'Search Movie'}
+          placeholder={t('searchBar.searchMovie')}
           onChange={(event) => setState(event.currentTarget.value)}
           value={state}
         />

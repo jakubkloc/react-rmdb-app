@@ -1,8 +1,10 @@
-import { useState, useEffect, useContext } from 'react';
+import {
+  useState, useEffect,
+} from 'react';
+// Translation
+import { useTranslation } from 'react-i18next';
 // Helpers
 import { persistedState } from '../helpers';
-// Context
-import { Context } from '../context';
 
 const initialState = {
   page: 0,
@@ -12,8 +14,9 @@ const initialState = {
 };
 
 const useHomeFetch = () => {
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
+  const { i18n } = useTranslation();
+  const actualLanguage = i18n.language;
+
   const [searchTerm, setSearchTerm] = useState('');
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -44,31 +47,31 @@ const useHomeFetch = () => {
   useEffect(() => {
     if (!searchTerm) {
       const sessionState = persistedState('homeState');
-      if (sessionState && sessionState.language === language) {
+      if (sessionState && sessionState.language === actualLanguage) {
         setState(sessionState);
         return;
       }
     }
 
     setState(initialState);
-    fetchMovies(1, language, searchTerm);
-  }, [searchTerm, language]);
+    fetchMovies(1, actualLanguage, searchTerm);
+  }, [searchTerm, actualLanguage]);
 
   // Load More
   useEffect(() => {
     if (!isLoadingMore) return;
 
-    fetchMovies(state.page + 1, searchTerm, language);
+    fetchMovies(state.page + 1, actualLanguage, searchTerm);
     setIsLoadingMore(false);
-  }, [isLoadingMore, searchTerm, state.page, language]);
+  }, [isLoadingMore, searchTerm, state.page, actualLanguage]);
 
   // Write to sessionStorage
   useEffect(() => {
     if (!searchTerm && state !== initialState) {
       sessionStorage.setItem('homeState', JSON.stringify(state));
-      sessionStorage.setItem('language', JSON.stringify(language));
+      sessionStorage.setItem('language', actualLanguage);
     }
-  }, [searchTerm, state, language]);
+  }, [searchTerm, state, actualLanguage]);
 
   return {
     state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore,

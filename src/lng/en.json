@@ -1,0 +1,43 @@
+{
+  "header": {
+    "loggedInAs": "Logged in as: ",
+    "logIn": "Log in",
+    "logOut": "Log out"
+  },
+
+  "searchBar": {
+    "searchMovie": "Search Movie"
+  },
+
+  "home": {
+    "somethingWentWrong": "Something went wrong ...",
+    "searchResults": "Search Results",
+    "popularMovies": "Popular Movies",
+    "loadMore": "Load More"
+  },
+
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login"
+  },
+
+  "movie": {
+    "somethingWentWrong": "Something went wrong ...",
+    "actors": "Actors"
+  },
+
+  "movieInfo": {
+    "plot": "PLOT",
+    "rating": "RATING",
+    "yourRate": "YOUR RATE",
+    "rate": "Rate",
+    "director": "DIRECTOR"
+  },
+
+  "movieInfoBar" : {
+    "runningTime" : "Running time",
+    "budget" : "Budget",
+    "revenue" : "Revenue"
+  }
+}

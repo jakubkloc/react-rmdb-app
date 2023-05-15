@@ -7,14 +7,9 @@ export const Context = createContext();
 function UserProvider({ children }) {
   const [user, setUser] = useState(() => persistedState('user'));
 
-  const [language, setLanguage] = useState(
-    () => persistedState('language') || 'pl',
-  );
-
   const value = React.useMemo(() => ({
     userData: { user, setUser },
-    languageData: { language, setLanguage },
-  }), [user, language]);
+  }), [user]);
 
   return (
     <Context.Provider

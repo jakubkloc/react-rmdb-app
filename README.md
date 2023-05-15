@@ -5,14 +5,14 @@ Created from FreeCodeCamp course [React JS Course for Beginners - 2021 Tutorial]
 Use API from [The Movie Database](https://www.themoviedb.org/)
 
 **If you fork this app from my Github you must:**
-1. create `.env` file and provide api key (from The Movie Database) in a variable named: `REACT_APP_API_KEY` (or or provide it when deploying this app on [Netflify](https://www.netlify.com/),
+1. create `.env` file and provide api key (from The Movie Database) in a variable named: `REACT_APP_API_KEY` (or or provide it when deploying this app on [Netflify](https://www.netlify.com/)),
 
 2. deploying this app on [Netflify](https://www.netlify.com/) or using the netlify CLI run command `netlify dev`.  
  
 
 In addition to the functionalities presented in the course, I expanded the application with:
 
-- language change function (Polish/English),
+- language change function (Polish/English) [i18next library](https://www.i18next.com/),
 
 - remembering the logged in user and the selected language after refreshing the page,
 

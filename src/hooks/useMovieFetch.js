@@ -1,15 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
+// Translation
+import { useTranslation } from 'react-i18next';
 // Helpers
 import { persistedState } from '../helpers';
-// Context
-import { Context } from '../context';
 
 const useMovieFetch = (movieId) => {
+  const { i18n } = useTranslation();
+  const actualLanguage = i18n.language;
   const [state, setState] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -17,12 +17,12 @@ const useMovieFetch = (movieId) => {
         setLoading(true);
         setError(false);
 
-        const urlMovie = `/.netlify/functions/fetchMovie?language=${language}&movieId=${movieId}`;
-        const urlCredits = `/.netlify/functions/fetchCredits?language=${language}&movieId=${movieId}`;
+        const urlMovie = `/.netlify/functions/fetchMovie?language=${actualLanguage}&movieId=${movieId}`;
+        const urlCredits = `/.netlify/functions/fetchCredits?language=${actualLanguage}&movieId=${movieId}`;
 
         const movie = await fetch(urlMovie).then((response) => response.json());
         const credits = await fetch(urlCredits).then((response) => response.json());
-        movie.language = language;
+        movie.language = actualLanguage;
 
         // Get directors only
         const directors = credits.crew.filter(
@@ -43,20 +43,20 @@ const useMovieFetch = (movieId) => {
 
     const sessionState = persistedState(movieId);
 
-    if (sessionState && sessionState.language === language) {
+    if (sessionState && sessionState.language === actualLanguage) {
       setState(sessionState);
       setLoading(false);
       return;
     }
 
     fetchMovie();
-  }, [movieId, language]);
+  }, [movieId, actualLanguage]);
 
   // Write to sessionStorage
   useEffect(() => {
     if (Object.entries(state).length !== 0) sessionStorage.setItem(movieId, JSON.stringify(state));
-    sessionStorage.setItem('language', JSON.stringify(language));
-  }, [movieId, state, language]);
+    sessionStorage.setItem('language', actualLanguage);
+  }, [movieId, state, actualLanguage]);
 
   return { state, loading, error };
 };

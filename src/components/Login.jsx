@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Translations
+import { useTranslation } from 'react-i18next';
 // Components
 import Button from './Button';
 // Styles
@@ -8,6 +10,7 @@ import Wrapper from './Login.styles';
 import { Context } from '../context';
 
 function Login() {
+  const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
@@ -15,8 +18,6 @@ function Login() {
   const { userData } = useContext(Context);
   const { setUser } = userData;
 
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -48,7 +49,7 @@ function Login() {
       {error && <div className="error">There was an error!</div>}
       <form>
         <label htmlFor="username">
-          {language === 'pl' ? 'Nazwa użytkownika' : 'Username' }
+          {t('login.username')}
           <input
             id="username"
             type="text"
@@ -59,16 +60,19 @@ function Login() {
           />
         </label>
 
-        <input
-          type="password"
-          value={password}
-          name="password"
-          onChange={handleInput}
-          autoComplete="current-password"
-        />
+        <label htmlFor="password">
+          {t('login.password')}
+          <input
+            type="password"
+            value={password}
+            name="password"
+            onChange={handleInput}
+            autoComplete="current-password"
+          />
+        </label>
       </form>
       <Button
-        text={language === 'pl' ? 'Zaloguj' : 'Login'}
+        text={t('login.login')}
         callback={handleSubmit}
       />
     </Wrapper>

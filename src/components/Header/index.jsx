@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// Translations
+import { useTranslation } from 'react-i18next';
 // Images
 import england from '../../images/united_kingdom_flag.png';
 import poland from '../../images/poland_flag.png';
@@ -16,6 +18,9 @@ import { Context } from '../../context';
 import { persistedState } from '../../helpers';
 
 function Header() {
+  const { t, i18n } = useTranslation();
+  const actualLanguage = i18n.language;
+
   const [width, setWidth] = React.useState(window.innerWidth);
   const breakpoint = 620;
   const breakpoint2 = 460;
@@ -23,10 +28,8 @@ function Header() {
   const { userData } = useContext(Context);
   const { user } = userData;
   const { setUser } = userData;
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
-  const { setLanguage } = languageData;
   const sessionState = persistedState('user');
+
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleWindowResize);
@@ -44,23 +47,9 @@ function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  let loginButton = '';
-  if (language === 'pl') {
-    loginButton = 'Zaloguj';
-  } else {
-    loginButton = 'Log in';
-  }
-
-  let logoutButton = '';
-  if (language === 'pl') {
-    logoutButton = 'Wyloguj';
-  } else {
-    logoutButton = 'Log out';
-  }
-
   let languageButton = '';
   if (width > breakpoint2) {
-    languageButton = language === 'pl' ? (
+    languageButton = actualLanguage === 'pl' ? (
       <span>
         ENG/
         <u>PL</u>
@@ -72,11 +61,21 @@ function Header() {
       </span>
     );
   } else {
-    languageButton = language === 'pl' ? (
+    languageButton = actualLanguage === 'pl' ? (
       <img src={england} alt="united-kingdom-flag" width="25" />
     ) : (
       <img src={poland} width="25" alt="poland-flag" />
     );
+  }
+
+  function changeLanguage() {
+    if (actualLanguage === 'pl') {
+      i18n.changeLanguage('en');
+    }
+    if (actualLanguage === 'en') {
+      i18n.changeLanguage('pl');
+    }
+    sessionStorage.setItem('language', `"${actualLanguage}"`);
   }
 
   return (
@@ -90,15 +89,15 @@ function Header() {
           <>
             {width > breakpoint && (
               <span className="loged-info">
-                {language === 'pl'
-                  ? `Zalogowany jako: ${user.username}`
-                  : `Logged in as: ${user.username}`}
+                {t('header.loggedInAs')}
+                {' '}
+                {user.username}
               </span>
             )}
 
             <button type="button" onClick={logOut} className="switch">
 
-              {width > breakpoint2 ? logoutButton : <img src={logoutSvg} alt="logout" />}
+              {width > breakpoint2 ? t('header.logOut') : <img src={logoutSvg} alt="logout" />}
             </button>
           </>
         )}
@@ -107,7 +106,7 @@ function Header() {
 
         !user && (
           <Link to="/login">
-            {width > breakpoint2 ? <span>{loginButton}</span> : <img src={loginSvg} alt="login" />}
+            {width > breakpoint2 ? <span>{t('header.logIn')}</span> : <img src={loginSvg} alt="login" />}
           </Link>
         )
 }
@@ -115,7 +114,7 @@ function Header() {
         <button
           type="button"
           className="switch"
-          onClick={() => setLanguage((prev) => (prev === 'pl' ? 'en-US' : 'pl'))}
+          onClick={() => changeLanguage()}
         >
           {languageButton}
 

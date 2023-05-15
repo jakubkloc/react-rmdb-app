@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 // Config
+import { useTranslation } from 'react-i18next';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+// Tranlation
 // Components
 import BreadCrumb from './BreadCrumb';
 import Grid from './Grid';
@@ -13,12 +15,9 @@ import Actor from './Actor';
 import useMovieFetch from '../hooks/useMovieFetch';
 // Image
 import NoImage from '../images/no_image.jpg';
-// Context
-import { Context } from '../context';
 
 function Movie() {
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
+  const { t } = useTranslation();
 
   const { movieId } = useParams();
 
@@ -26,11 +25,7 @@ function Movie() {
 
   if (loading) return <Spinner />;
   if (error) {
-    return language === 'pl' ? (
-      <div>Coś poszło nie tak ...</div>
-    ) : (
-      <div>Something went wrong ...</div>
-    );
+    return <div>{t('movie.somethingWentWrong')}</div>;
   }
 
   return (
@@ -42,7 +37,7 @@ function Movie() {
         budget={movie.budget}
         revenue={movie.revenue}
       />
-      <Grid header={language === 'pl' ? 'Aktorzy' : 'Actors'}>
+      <Grid header={t('movie.actors')}>
         {movie.actors.map((actor) => (
           <Actor
             key={actor.credit_id}

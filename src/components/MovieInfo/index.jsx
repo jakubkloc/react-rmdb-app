@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 // import API from "../../API";
 import PropTypes from 'prop-types';
+// Translation
+import { useTranslation } from 'react-i18next';
 // Components
 import Thumb from '../Thumb';
 // Config
@@ -14,13 +16,13 @@ import { Context } from '../../context';
 import Button from '../Button';
 
 function MovieInfo({ movie }) {
+  const { t, i18n } = useTranslation();
+  const actualLanguage = i18n.language;
   const [value, setValue] = React.useState(5);
   const [loading, setLoading] = React.useState(true);
   const [yourRate, setYourRate] = React.useState(null);
   const { userData } = useContext(Context);
   const { user } = userData;
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
 
   const [width, setWidth] = React.useState(window.innerWidth);
   const breakpoint = 460;
@@ -43,13 +45,13 @@ function MovieInfo({ movie }) {
   let movieDescription = '';
   if (movie.overview) {
     movieDescription = movie.overview;
-  } else if (language === 'pl') {
-    movieDescription = 'Brak opisu w języku polskim';
+  } else if (actualLanguage === 'pl') {
+    movieDescription = t('noDescription');
   }
 
   async function fetchRate() {
     setLoading(true);
-    const urlFetchRate = `/.netlify/functions/fetchRate?sessionId=${user.sessionID}&movieId=${movie.id}&language=${language}`;
+    const urlFetchRate = `/.netlify/functions/fetchRate?sessionId=${user.sessionID}&movieId=${movie.id}&language=${actualLanguage}`;
     const fetchedRate = await fetch(urlFetchRate).then((response) => response.json());
 
     if (fetchedRate.rated) {
@@ -76,7 +78,7 @@ function MovieInfo({ movie }) {
         />
         <Text>
           <h1>{movie.title}</h1>
-          {language === 'pl' ? <h3>FABUŁA</h3> : <h3>PLOT</h3>}
+          <h3>{t('movieInfo.plot')}</h3>
           <p>{movieDescription}</p>
 
           { width > breakpoint
@@ -87,13 +89,13 @@ function MovieInfo({ movie }) {
 
                   <div className="ratings">
                     <div className="rate-container">
-                      {language === 'pl' ? <h3>OCENA</h3> : <h3>RATING</h3>}
+                      <h3>{t('movieInfo.rating')}</h3>
                       <div className="score">{movie.vote_average}</div>
                     </div>
 
                     { (yourRate && user) ? (
                       <div className="rate-container">
-                        {language === 'pl' ? <h3>TWOJA  OCENA</h3> : <h3>YOUR RATE</h3>}
+                        <h3>{t('movieInfo.yourRate')}</h3>
                         <div className="score">
                           { loading
                             ? <div className="spinner" /> : yourRate}
@@ -105,7 +107,7 @@ function MovieInfo({ movie }) {
                   {user && (
 
                   <Button
-                    text={language === 'pl' ? 'Oceń' : 'Rate'}
+                    text={t('movieInfo.rate')}
                     callback={() => handleRating(value)}
                   />
 
@@ -117,7 +119,7 @@ function MovieInfo({ movie }) {
 
                   <div className="director">
                     <h3>
-                      {language === 'pl' ? 'REŻYSER' : 'DIRECTOR'}
+                      {t('movieInfo.director')}
                       {movie.directors.length > 1 ? 'S' : ''}
                     </h3>
                     {movie.directors.map((director) => (
@@ -153,13 +155,15 @@ function MovieInfo({ movie }) {
 
                   <div className="ratings">
                     <div className="rate-container">
-                      {language === 'pl' ? <h3>OCENA</h3> : <h3>RATING</h3>}
+                      <h3>{t('movieInfo.rating')}</h3>
                       <div className="score">{movie.vote_average}</div>
                     </div>
 
                     { (yourRate && user) ? (
                       <div className="rate-container">
-                        {language === 'pl' ? <h3>TWOJA OCENA</h3> : <h3>YOUR RATE</h3>}
+                        <h3>
+                          {t('movieInfor.yourRate')}
+                        </h3>
                         <div className="score">
                           { loading
                             ? <div className="spinner" /> : yourRate}
@@ -168,7 +172,7 @@ function MovieInfo({ movie }) {
                     ) : null}
                     <div className="director">
                       <h3>
-                        {language === 'pl' ? 'REŻYSER' : 'DIRECTOR'}
+                        {t('movieInfo.director')}
                         {movie.directors.length > 1 ? 'S' : ''}
                       </h3>
                       {movie.directors.map((director) => (
@@ -184,7 +188,7 @@ function MovieInfo({ movie }) {
                   {user && (
                     <>
                       <Button
-                        text={language === 'pl' ? 'Oceń' : 'Rate'}
+                        text={t('movieInfo.rate')}
                         callback={() => handleRating(value)}
                       />
 

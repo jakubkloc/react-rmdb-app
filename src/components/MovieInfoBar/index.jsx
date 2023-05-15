@@ -1,28 +1,28 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+// Translation
+import { useTranslation } from 'react-i18next';
 // Helpers
 import { calcTime, convertMoney } from '../../helpers';
 // Styles
 import { Wrapper, Content } from './MovieInfoBar.styles';
-// Context
-import { Context } from '../../context';
 
 function MovieInfoBar({ time, budget, revenue }) {
-  const { languageData } = useContext(Context);
-  const { language } = languageData;
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <Content>
         <div className="column">
 
           <p>
-            { language === 'pl' ? 'Czas Trwania:' : 'Running time:'}
+            {t('movieInfoBar.runningTime')}
+            {' '}
             {calcTime(time)}
           </p>
         </div>
         <div className="column">
           <p>
-            { language === 'pl' ? 'Budżet:' : 'Budget:'}
+            {t('movieInfoBar.budget')}
             {' '}
             {convertMoney(budget)}
           </p>
@@ -30,7 +30,7 @@ function MovieInfoBar({ time, budget, revenue }) {
         <div className="column">
 
           <p>
-            { language === 'pl' ? 'Przychód:' : 'Revenue:'}
+            {t('movieInfoBar.revenue')}
             {' '}
             {convertMoney(revenue)}
           </p>
