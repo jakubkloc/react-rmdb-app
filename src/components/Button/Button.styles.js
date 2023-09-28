@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.button`
   display: block;
@@ -18,6 +18,6 @@ const Wrapper = styled.button`
   :hover {
     opacity: 0.8;
   }
-  `;
+`;
 
 export default Wrapper;

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 // Translation
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // Helpers
-import { persistedState } from '../helpers';
+import { persistedState } from "../helpers";
 
 const useMovieFetch = (movieId) => {
   const { i18n } = useTranslation();
@@ -21,12 +21,14 @@ const useMovieFetch = (movieId) => {
         const urlCredits = `/.netlify/functions/fetchCredits?language=${actualLanguage}&movieId=${movieId}`;
 
         const movie = await fetch(urlMovie).then((response) => response.json());
-        const credits = await fetch(urlCredits).then((response) => response.json());
+        const credits = await fetch(urlCredits).then((response) =>
+          response.json()
+        );
         movie.language = actualLanguage;
 
         // Get directors only
         const directors = credits.crew.filter(
-          (member) => member.job === 'Director',
+          (member) => member.job === "Director"
         );
 
         setState({
@@ -54,8 +56,9 @@ const useMovieFetch = (movieId) => {
 
   // Write to sessionStorage
   useEffect(() => {
-    if (Object.entries(state).length !== 0) sessionStorage.setItem(movieId, JSON.stringify(state));
-    sessionStorage.setItem('language', actualLanguage);
+    if (Object.entries(state).length !== 0)
+      sessionStorage.setItem(movieId, JSON.stringify(state));
+    sessionStorage.setItem("language", actualLanguage);
   }, [movieId, state, actualLanguage]);
 
   return { state, loading, error };

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 // Translation
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // Helpers
-import { calcTime, convertMoney } from '../../helpers';
+import { calcTime, convertMoney } from "../../helpers";
 // Styles
-import { Wrapper, Content } from './MovieInfoBar.styles';
+import { Wrapper, Content } from "./MovieInfoBar.styles";
 
 function MovieInfoBar({ time, budget, revenue }) {
   const { t } = useTranslation();
@@ -13,26 +13,18 @@ function MovieInfoBar({ time, budget, revenue }) {
     <Wrapper>
       <Content>
         <div className="column">
-
           <p>
-            {t('movieInfoBar.runningTime')}
-            {' '}
-            {calcTime(time)}
+            {t("movieInfoBar.runningTime")} {calcTime(time)}
           </p>
         </div>
         <div className="column">
           <p>
-            {t('movieInfoBar.budget')}
-            {' '}
-            {convertMoney(budget)}
+            {t("movieInfoBar.budget")} {convertMoney(budget)}
           </p>
         </div>
         <div className="column">
-
           <p>
-            {t('movieInfoBar.revenue')}
-            {' '}
-            {convertMoney(revenue)}
+            {t("movieInfoBar.revenue")} {convertMoney(revenue)}
           </p>
         </div>
       </Content>

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 // Styles
-import Wrapper from './Button.styles';
+import Wrapper from "./Button.styles";
 
 function Button({ text, callback }) {
   return (

@@ -1,35 +1,34 @@
-import React from 'react';
+import React from "react";
 // Translations
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // Config
-import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
+import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
 // Components
-import HeroImage from './HeroImage';
-import Grid from './Grid';
-import Thumb from './Thumb';
-import Spinner from './Spinner';
-import SearchBar from './SearchBar';
-import Button from './Button';
+import HeroImage from "./HeroImage";
+import Grid from "./Grid";
+import Thumb from "./Thumb";
+import Spinner from "./Spinner";
+import SearchBar from "./SearchBar";
+import Button from "./Button";
 // Hook
-import useHomeFetch from '../hooks/useHomeFetch';
+import useHomeFetch from "../hooks/useHomeFetch";
 // Image
-import NoImage from '../images/no_image.jpg';
+import NoImage from "../images/no_image.jpg";
 
 function Home() {
   const { t } = useTranslation();
-  const {
-    state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore,
-  } = useHomeFetch();
+  const { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore } =
+    useHomeFetch();
   if (error) {
-    return <div>{t('home.somethingWentWrong')}</div>;
+    return <div>{t("home.somethingWentWrong")}</div>;
   }
 
-  let gridHeader = '';
+  let gridHeader = "";
 
   if (searchTerm) {
-    gridHeader = t('home.searchResults');
+    gridHeader = t("home.searchResults");
   } else {
-    gridHeader = t('home.popularMovies');
+    gridHeader = t("home.popularMovies");
   }
 
   return (
@@ -42,11 +41,7 @@ function Home() {
         />
       ) : null}
       <SearchBar setSearchTerm={setSearchTerm} />
-      <Grid
-        header={
-         gridHeader
-        }
-      >
+      <Grid header={gridHeader}>
         {state.results.map((movie) => (
           <Thumb
             key={movie.id}
@@ -63,7 +58,7 @@ function Home() {
       {loading && <Spinner />}
       {state.page < state.total_pages && !loading && (
         <Button
-          text={t('home.loadMore')}
+          text={t("home.loadMore")}
           callback={() => setIsLoadingMore(true)}
         />
       )}

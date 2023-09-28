@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 // Styles
-import Image from './Thumb.styles';
+import Image from "./Thumb.styles";
 
 function Thumb({ image, movieId, clickable }) {
   return (

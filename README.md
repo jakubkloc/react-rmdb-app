@@ -1,14 +1,16 @@
-# This is React App 
+# This is React App
 
 Created from FreeCodeCamp course [React JS Course for Beginners - 2021 Tutorial](https://youtu.be/nTeuhbP7wdE)
 
 Use API from [The Movie Database](https://www.themoviedb.org/)
 
 **If you fork this app from my Github you must:**
+
 1. create `.env` file and provide api key (from The Movie Database) in a variable named: `REACT_APP_API_KEY` (or or provide it when deploying this app on [Netflify](https://www.netlify.com/)),
 
-2. deploying this app on [Netflify](https://www.netlify.com/) or using the netlify CLI run command `netlify dev`.  
- 
+2. deploying this app on [Netflify](https://www.netlify.com/) or using the [netlify CLI](https://docs.netlify.com/cli/get-started/) run command `netlify dev`.
+
+3. On the login page, the fields are placeholder with the data you need to rewrite and you can log in to your show account, with the same data you can log in to the [The Movie Database](https://www.themoviedb.org/) site where the same movies should be rated
 
 In addition to the functionalities presented in the course, I expanded the application with:
 
@@ -20,7 +22,7 @@ In addition to the functionalities presented in the course, I expanded the appli
 
 - changed font from abel to roboto to support polish language,
 
-- added information if user rate movie before and display it 
+- added information if user rate movie before and display it
 
 - increased the accuracy of the rating (increments of 0.5 to be more compatible with the API),
 
@@ -28,17 +30,15 @@ In addition to the functionalities presented in the course, I expanded the appli
 
 - I secured the API key with [serverless Netflify functions](https://www.netlify.com/products/functions/),
 
-- responsiveness fix 
-  
-  - changing subtitles into icons  in headears when screen size is below 460px 
-  
+- responsiveness fix
+
+  - changing subtitles into icons in headears when screen size is below 460px
   - hiding username information when screen size is below 460px
-  
   - changing movie rating and director infromations layout
 
-***
+---
 
-***
+---
 
 # Original README.md provided by the course author
 

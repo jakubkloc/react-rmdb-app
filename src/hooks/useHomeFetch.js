@@ -1,10 +1,8 @@
-import {
-  useState, useEffect,
-} from 'react';
+import { useState, useEffect } from "react";
 // Translation
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // Helpers
-import { persistedState } from '../helpers';
+import { persistedState } from "../helpers";
 
 const initialState = {
   page: 0,
@@ -17,13 +15,13 @@ const useHomeFetch = () => {
   const { i18n } = useTranslation();
   const actualLanguage = i18n.language;
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const fetchMovies = async (page, selectedLanguage, inputSearchTerm = '') => {
+  const fetchMovies = async (page, selectedLanguage, inputSearchTerm = "") => {
     try {
       setError(false);
       setLoading(true);
@@ -46,7 +44,7 @@ const useHomeFetch = () => {
   // Search and initial
   useEffect(() => {
     if (!searchTerm) {
-      const sessionState = persistedState('homeState');
+      const sessionState = persistedState("homeState");
       if (sessionState && sessionState.language === actualLanguage) {
         setState(sessionState);
         return;
@@ -68,13 +66,18 @@ const useHomeFetch = () => {
   // Write to sessionStorage
   useEffect(() => {
     if (!searchTerm && state !== initialState) {
-      sessionStorage.setItem('homeState', JSON.stringify(state));
-      sessionStorage.setItem('language', actualLanguage);
+      sessionStorage.setItem("homeState", JSON.stringify(state));
+      sessionStorage.setItem("language", actualLanguage);
     }
   }, [searchTerm, state, actualLanguage]);
 
   return {
-    state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore,
+    state,
+    loading,
+    error,
+    searchTerm,
+    setSearchTerm,
+    setIsLoadingMore,
   };
 };
 

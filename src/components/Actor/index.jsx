@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 // Styles
-import { Wrapper, Image } from './Actor.styled';
+import { Wrapper, Image } from "./Actor.styled";
 
 function Actor({ name, character, imageUrl }) {
   return (

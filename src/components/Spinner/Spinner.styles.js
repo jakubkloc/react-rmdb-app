@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Spinner = styled.div`
   border: 5px solid var(--lightGrey);

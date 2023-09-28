@@ -1,21 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 // Translations
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // Images
-import england from '../../images/united_kingdom_flag.png';
-import poland from '../../images/poland_flag.png';
-import loginSvg from '../../images/log-in.svg';
-import logoutSvg from '../../images/log-out.svg';
+import england from "../../images/united_kingdom_flag.png";
+import poland from "../../images/poland_flag.png";
+import loginSvg from "../../images/log-in.svg";
+import logoutSvg from "../../images/log-out.svg";
 
-import RMDBLogo from '../../images/react-movie-logo.svg';
-import TMDBLogo from '../../images/tmdb_logo.svg';
-import {
-  Wrapper, Content, LogoImg, TMDBLogoImg,
-} from './Header.styles';
+import RMDBLogo from "../../images/react-movie-logo.svg";
+import TMDBLogo from "../../images/tmdb_logo.svg";
+import { Wrapper, Content, LogoImg, TMDBLogoImg } from "./Header.styles";
 // Context
-import { Context } from '../../context';
-import { persistedState } from '../../helpers';
+import { Context } from "../../context";
+import { persistedState } from "../../helpers";
 
 function Header() {
   const { t, i18n } = useTranslation();
@@ -28,60 +26,62 @@ function Header() {
   const { userData } = useContext(Context);
   const { user } = userData;
   const { setUser } = userData;
-  const sessionState = persistedState('user');
+  const sessionState = persistedState("user");
 
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
 
-    return () => window.removeEventListener('resize', handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
 
   if (!sessionState && user) {
-    sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem("user", JSON.stringify(user));
   }
   function logOut() {
-    setUser('');
-    sessionStorage.removeItem('user');
+    setUser("");
+    sessionStorage.removeItem("user");
   }
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === "/";
 
-  let languageButton = '';
+  let languageButton = "";
   if (width > breakpoint2) {
-    languageButton = actualLanguage === 'pl' ? (
-      <span>
-        ENG/
-        <u>PL</u>
-      </span>
-    ) : (
-      <span>
-        <u>ENG</u>
-        /PL
-      </span>
-    );
+    languageButton =
+      actualLanguage === "pl" ? (
+        <span>
+          ENG/
+          <u>PL</u>
+        </span>
+      ) : (
+        <span>
+          <u>ENG</u>
+          /PL
+        </span>
+      );
   } else {
-    languageButton = actualLanguage === 'pl' ? (
-      <img src={england} alt="united-kingdom-flag" width="25" />
-    ) : (
-      <img src={poland} width="25" alt="poland-flag" />
-    );
+    languageButton =
+      actualLanguage === "pl" ? (
+        <img src={england} alt="united-kingdom-flag" width="25" />
+      ) : (
+        <img src={poland} width="25" alt="poland-flag" />
+      );
   }
 
   function changeLanguage() {
-    if (actualLanguage === 'pl') {
-      i18n.changeLanguage('en');
+    if (actualLanguage === "pl") {
+      i18n.changeLanguage("en");
     }
-    if (actualLanguage === 'en') {
-      i18n.changeLanguage('pl');
+    if (actualLanguage === "en") {
+      i18n.changeLanguage("pl");
     }
-    sessionStorage.setItem('language', `"${actualLanguage}"`);
+    sessionStorage.setItem("language", `"${actualLanguage}"`);
   }
 
   return (
     <Wrapper>
       <Content>
-        <Link to="/" className={isHomePage ? 'default-cursor' : ''}>
+        <Link to="/" className={isHomePage ? "default-cursor" : ""}>
           <LogoImg src={RMDBLogo} alt="rmbd-logo" />
         </Link>
 
@@ -89,27 +89,29 @@ function Header() {
           <>
             {width > breakpoint && (
               <span className="loged-info">
-                {t('header.loggedInAs')}
-                {' '}
-                {user.username}
+                {t("header.loggedInAs")} {user.username}
               </span>
             )}
 
             <button type="button" onClick={logOut} className="switch">
-
-              {width > breakpoint2 ? t('header.logOut') : <img src={logoutSvg} alt="logout" />}
+              {width > breakpoint2 ? (
+                t("header.logOut")
+              ) : (
+                <img src={logoutSvg} alt="logout" />
+              )}
             </button>
           </>
         )}
 
-        {
-
-        !user && (
+        {!user && (
           <Link to="/login">
-            {width > breakpoint2 ? <span>{t('header.logIn')}</span> : <img src={loginSvg} alt="login" />}
+            {width > breakpoint2 ? (
+              <span>{t("header.logIn")}</span>
+            ) : (
+              <img src={loginSvg} alt="login" />
+            )}
           </Link>
-        )
-}
+        )}
 
         <button
           type="button"
@@ -117,7 +119,6 @@ function Header() {
           onClick={() => changeLanguage()}
         >
           {languageButton}
-
         </button>
         <TMDBLogoImg src={TMDBLogo} alt="tmbd-logo" />
       </Content>

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 // Styles
-import { Wrapper, Content } from './Grid.styles';
+import { Wrapper, Content } from "./Grid.styles";
 
 function Grid({ header, children }) {
   return (

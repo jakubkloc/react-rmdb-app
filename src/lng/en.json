@@ -35,9 +35,9 @@
     "director": "DIRECTOR"
   },
 
-  "movieInfoBar" : {
-    "runningTime" : "Running time",
-    "budget" : "Budget",
-    "revenue" : "Revenue"
+  "movieInfoBar": {
+    "runningTime": "Running time",
+    "budget": "Budget",
+    "revenue": "Revenue"
   }
 }

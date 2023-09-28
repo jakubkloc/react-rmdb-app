@@ -36,9 +36,9 @@
     "director": "REŻYSER"
   },
 
-  "movieInfoBar" : {
-    "runningTime" : "Czas Trwania",
-    "budget" : "Budżet",
-    "revenue" : "Przychód"
+  "movieInfoBar": {
+    "runningTime": "Czas Trwania",
+    "budget": "Budżet",
+    "revenue": "Przychód"
   }
 }

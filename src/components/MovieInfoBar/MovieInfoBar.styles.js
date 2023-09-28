@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   min-height: 100px;
   background: var(--darkGrey);
@@ -18,8 +18,8 @@ export const Content = styled.div`
     align-items: center;
     justify-content: center;
     background: var(--medGrey);
-    border-radius: 20px; 
-    margin: 0 20px; 
+    border-radius: 20px;
+    margin: 0 20px;
     flex: 1;
 
     :first-child {

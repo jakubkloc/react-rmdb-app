@@ -1,20 +1,20 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 // Config
-import { useTranslation } from 'react-i18next';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import { useTranslation } from "react-i18next";
+import { IMAGE_BASE_URL, POSTER_SIZE } from "../config";
 // Tranlation
 // Components
-import BreadCrumb from './BreadCrumb';
-import Grid from './Grid';
-import Spinner from './Spinner';
-import MovieInfo from './MovieInfo';
-import MovieInfoBar from './MovieInfoBar';
-import Actor from './Actor';
+import BreadCrumb from "./BreadCrumb";
+import Grid from "./Grid";
+import Spinner from "./Spinner";
+import MovieInfo from "./MovieInfo";
+import MovieInfoBar from "./MovieInfoBar";
+import Actor from "./Actor";
 // Hook
-import useMovieFetch from '../hooks/useMovieFetch';
+import useMovieFetch from "../hooks/useMovieFetch";
 // Image
-import NoImage from '../images/no_image.jpg';
+import NoImage from "../images/no_image.jpg";
 
 function Movie() {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ function Movie() {
 
   if (loading) return <Spinner />;
   if (error) {
-    return <div>{t('movie.somethingWentWrong')}</div>;
+    return <div>{t("movie.somethingWentWrong")}</div>;
   }
 
   return (
@@ -37,7 +37,7 @@ function Movie() {
         budget={movie.budget}
         revenue={movie.revenue}
       />
-      <Grid header={t('movie.actors')}>
+      <Grid header={t("movie.actors")}>
         {movie.actors.map((actor) => (
           <Actor
             key={actor.credit_id}

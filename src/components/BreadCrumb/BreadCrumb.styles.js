@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ export const Content = styled.div`
     font-size: var(--fontMed);
     color: var(--white);
     padding-right: 10px;
-    
+
     @media screen and (max-width: 768px) {
       font-size: var(--fontSmall);
     }
