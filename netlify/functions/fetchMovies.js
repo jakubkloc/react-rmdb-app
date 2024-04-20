@@ -1,17 +1,17 @@
-import fetch from 'node-fetch';
-import { SEARCH_BASE_URL, POPULAR_BASE_URL } from './config';
+import fetch from "node-fetch";
+import { SEARCH_BASE_URL, POPULAR_BASE_URL } from "./config";
 
 exports.handler = async function (event, context) {
   try {
     const { language } = event.queryStringParameters;
     const { searchTerm } = event.queryStringParameters;
-    const { page } = event.queryStringParameters;
 
+    const { page } = event.queryStringParameters;
     const urlSearch = `${SEARCH_BASE_URL}&${
-      language === 'pl' ? 'language=pl-PL' : 'language=en-US'
+      language === "pl" ? "language=pl-PL" : "language=en-US"
     }&query=`;
     const urlPopular = `${POPULAR_BASE_URL}&${
-      language === 'pl' ? 'language=pl-PL' : 'language=en-US'
+      language === "pl" ? "language=pl-PL" : "language=en-US"
     }&query=`;
 
     const endpoint = searchTerm
